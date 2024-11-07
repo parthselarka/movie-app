@@ -1,0 +1,509 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(21, 21, 21);    
+}
+
+li {
+    list-style: none;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.movie-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.movie-item {
+    flex: 1 1 calc(33.333% - 20px); /* Adjusts to 3 items per row */
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    list-style: none;
+}
+
+@media (max-width: 768px) {
+    .movie-item {
+        flex: 1 1 calc(50% - 20px); /* Adjusts to 2 items per row for smaller screens */
+    }
+    .individual_movie {
+        width: 200px;
+        overflow: hidden;
+        white-space: nowrap;        /* Prevents text from wrapping to a new line */
+        text-overflow: ellipsis;    /* Adds the ellipsis when text overflows */
+    }
+}
+
+@media (max-width: 480px) {
+    .movie-item {
+        flex: 1 1 100%; /* Adjusts to 1 item per row for very small screens */
+    }
+
+    .individual_movie {
+        width: 133px;
+        overflow: hidden;
+        white-space: nowrap;        /* Prevents text from wrapping to a new line */
+        text-overflow: ellipsis;    /* Adds the ellipsis when text overflows */
+    }
+
+    .title{
+        text-overflow: ellipsis;
+    }
+}
+
+.poster_img {
+    height: 400px;
+    width: 266px;
+}
+
+.individual_movie {
+    background-color: rgb(53, 53, 53);
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 5px;
+    filter: drop-shadow(0px 0px 4px #000000);
+}
+
+.title {
+    margin-top: 10px;
+    color: azure;
+    width: 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.title:hover {
+    overflow: visible;
+}
+
+.info {
+    margin-top: 10px;
+    margin-left: 20px;
+    width: fit-content;
+}
+
+.voteAverage {
+    color: azure;
+}
+
+.search {
+    height: 70px;
+    max-width: 679px;
+    width: 80%;
+    margin: auto;
+    background-color: white;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-btn {
+    float: right;
+    margin-right: 10px;
+}
+
+.userInput {
+    width: 649px;
+    height: 80%;
+    border: none;
+    background-color: transparent;
+    margin-left: 50px;
+    font-size: 24px;
+    -webkit-tap-highlight-color: white;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.userInput:focus {
+    outline: none !important;
+}
+
+.appTitle {
+
+    color: azure;
+    font-size: 32px;
+}
+
+.searchbutton {
+    background-color: transparent;
+    border: none;
+}
+
+.searchbutton:hover {
+    cursor: pointer;
+}
+
+.individual_movie:hover {
+    transition-duration: 1s, 1s;
+    transition-property: transform;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.pagination button {
+    background-color: transparent;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    color: #ccc;
+    border: none;
+}
+
+.pagination button.active {
+    background-color: #ccc;
+    font-weight: bold;
+}
+
+.movie-detail-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+.poster_img {
+    max-width: 300px;
+}
+
+.info {
+    max-width: 600px;
+    margin-top: 20px;
+    color: azure;
+}
+
+.info h2, .info h3 {
+    margin: 10px 0;
+}
+
+#poster_img {
+    border-radius: 100%;
+    height: 200px;
+    width: 200px;
+}
+
+#back-btn {
+    background-color: transparent;
+    color: azure;
+    width: 200px;
+    padding: 10px;
+    border: 1px solid azure;
+    border-radius: 10px;
+    font-size: 25px;
+    margin-top: 40px;
+    margin-left: 120px;
+}
+
+#back-btn:hover{
+    cursor: pointer;
+}
+
+.poster {
+    border-radius: 28px;
+    height: 731px;
+    width: 487.33px;
+    box-shadow: 10px 10px 10px 10px inset;
+    position: absolute;
+    z-index: 4;
+    margin-left: 30px;
+}
+
+#poster {
+    filter: brightness(300%) blur(50px);
+    height: 800px;
+    width: 500px;
+}
+
+.poster-div {
+    margin-top: 50px;
+    margin-left: 20px;
+}
+
+.detail-container {
+    margin: auto;
+    display: flex;   
+    width: 90%;
+    justify-content: center;
+
+}
+
+.movie-detailed {
+    background-color: #1c1c1c;
+    border-radius: 20px;
+    color: white;
+    margin-top: 50px;
+    margin-left: 80px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 40px;   
+    padding-right: 40px;   
+    width: 670px;
+    min-height: 731px;
+    height: fit-content;
+}
+
+.movie-detailed > *{
+    margin: 0px;
+
+}
+
+#appTitle{
+    margin: auto;
+    font-size: 70px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+
+.genre-list li{
+    display: inline;
+    font-size: 24px;
+}
+
+.genre-list{
+    padding-left: 0px;
+}
+
+.genre{
+    display: inline;
+}
+
+
+
+.learnMore{
+    border: none;
+    background-color: rgb(21, 21, 21);    
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+    font-size: 20px;
+    color: white;
+    width: 200px;
+    border: 1px solid rgb(122, 122, 122);
+    border-radius: 15px;
+}
+
+/* Ensure each class targets individual containers properly */
+.overview-container > *,
+.releaseDate-container > *,
+.rating-container> *,
+.genre-container > * {
+    margin-bottom: 0px;
+    margin-top: 5px;
+}
+
+.overview-detail{
+    max-width: 600px;
+    margin-bottom: 20px;
+}
+
+.releaseDate-container,
+.rating-container,
+.genre-container,
+.learnMore {
+    margin-bottom: 40px;   
+}
+
+.star-container {
+    display: flex;
+
+}
+.star {
+    width: 20px;
+    height: 20px;
+    fill: gold;
+    margin-right: 2px;
+}
+.half-star {
+    clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+}
+
+.star-rate{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.learnMore:hover{
+    cursor: pointer;
+}
+
+.unordered{
+    padding: 0px;
+}
+
+.movielist{
+    text-align: center;    
+    color: white;              /* Inherit color from surrounding elements */
+    cursor: pointer;             /* Use pointer to show it’s clickable */
+    text-decoration-color: white !important;     /* Remove underline */
+    text-decoration: none   !important   /* Keep underline */
+}
+
+a.movielist {
+    text-decoration: none   !important   /* Keep underline */;
+    text-decoration-color: white !important;  
+}
+
+@media (max-width: 768px) {
+    .movie-item {
+        flex: 1 1 calc(50% - 20px); /* Adjusts to 2 items per row for smaller screens */
+    }
+
+    .poster_img {
+        height: 300px;
+        width: 200px;
+    }
+
+    .info {
+        margin-left: 10px;
+    }
+
+    .detail-container{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .movie-detailed{
+        width: 80%;
+        margin: 0px;
+        margin: auto;
+    }
+
+    .poster-div{
+        margin: auto;
+    }
+
+    .poster{
+        margin: 0px;
+    }
+
+    #back-btn{
+        
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .movie-item {
+        flex: 1 1 100%; /* Adjusts to 1 item per row for very small screens */
+    }
+
+    .appTitle {
+        font-size: 32px;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .movielist {
+        font-size: 24px;
+    }
+
+    .poster_img {
+        height: 200px;
+        width: 133px;
+    }
+
+    .search {
+        height: 50px;
+        width: 280px;
+        border-radius: 50px;
+        padding: 0 10px;
+    }
+
+    .searchbutton{
+        height: fit-content;
+        width: fit-content;
+        margin-left: 50px;
+    }
+
+    .userInput {
+        font-size: 16px;
+        margin-left: 10px;
+    }
+
+    .movie-detailed {
+        width: 80%;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .search-svg{
+        height: 30px;
+    }
+    .pagination button {
+        padding: 8px 12px;
+    }
+
+    #back-btn {
+        font-size: 18px;
+        width: 150px;
+    }
+
+    .poster-div{
+        width: 260px;
+        height: auto;
+    }
+
+    .poster{
+        width: 70%;
+        height: auto;
+    }
+
+    #poster{
+        width: 70%;
+        height: fit-content;
+    }
+
+    .detail-container{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .movie-detailed{
+        margin-top: 140px;
+    }
+}
+
+@media (max-width: 1062px) {
+    .detail-container{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .poster-div{
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.genre-height{
+    height: fit-content;
+}

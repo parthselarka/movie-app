@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= movie.title %></title>
+    <script src="/js/script.js"></script>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <button id="back-btn">Back</button>
+    <div class="detail-container">
+        <div class="poster-div">
+            <img draggable="false" class="poster" src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" alt="<%= movie.title %>">
+            <img draggable="false" id="poster" src="https://image.tmdb.org/t/p/w500<%= movie.poster_path %>" alt="<%= movie.title %>">
+        </div>
+
+        <div class="movie-detailed">
+            <h1 id="appTitle"><%= movie.title %></h1>
+
+            <div class="overview-container">
+                <h1 class="overview">Overview</h1>
+            <h3 class="overview-detail"><%= movie.overview %></h3>
+
+            </div>
+            <div class="releaseDate-container">
+                <h1>Release Date</h1>
+                <h3><%= movie.release_date %></h3>
+            </div>            
+            
+            <div class="rating-container">
+                <h1>Rating</h1>
+                <% const number = movie.vote_average %>
+                <% const rounded = number.toFixed(1) %>
+                <div class="star-rate">
+                    <h3><%= rounded %> /10</h3>
+                    <div class="star-container" id="star-container">   
+                        
+                         <?xml version="1.0" encoding="iso-8859-1"?>
+                        <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+                                                <svg style="margin-right: 5px;" height="20px" width="15px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+                            viewBox="0 0 47.94 47.94" xml:space="preserve">
+                        <path style="fill:#ED8A19;" d="M26.285,2.486l5.407,10.956c0.376,0.762,1.103,1.29,1.944,1.412l12.091,1.757
+                            c2.118,0.308,2.963,2.91,1.431,4.403l-8.749,8.528c-0.608,0.593-0.886,1.448-0.742,2.285l2.065,12.042
+                            c0.362,2.109-1.852,3.717-3.746,2.722l-10.814-5.685c-0.752-0.395-1.651-0.395-2.403,0l-10.814,5.685
+                            c-1.894,0.996-4.108-0.613-3.746-2.722l2.065-12.042c0.144-0.837-0.134-1.692-0.742-2.285l-8.749-8.528
+                            c-1.532-1.494-0.687-4.096,1.431-4.403l12.091-1.757c0.841-0.122,1.568-0.65,1.944-1.412l5.407-10.956
+                            C22.602,0.567,25.338,0.567,26.285,2.486z"/>
+                    </svg></div>
+                </div>
+                
+            </div>
+    
+            <div class="genre-height">
+                <div class="genre-container">
+                    <h1>Genre</h1>
+                    <% if (movie.genres) { %>
+                        <ul class="genre-list">
+                            <% movie.genres.forEach((genre, index) => { %>
+                                <li class="genre-item"><%= genre.name %><% if (index < movie.genres.length - 1) { %>,<% } %></li>
+                            <% }); %>
+                        </ul>
+                    <% } %>
+                </div>
+                
+            </div>
+            
+            
+            <div id="learnMoreContainer"></div>
+        </div>
+    </div>
+</body>
+<script src="/js/script.js"></script>
+<script>
+    function createStar(filled = true, half = false) {
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.setAttribute("viewBox", "0 0 24 24");
+        svg.setAttribute("class", "star");
+        if (half) {
+            svg.classList.add("half-star");
+        }
+
+        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        path.setAttribute("d", "M12 .587l3.668 7.57 8.332 1.15-6.001 5.853 1.419 8.285L12 18.896 4.582 23.445 6 15.16l-6-5.853 8.332-1.15z");
+        if (!filled) {
+            path.setAttribute("fill", "none");
+            path.setAttribute("stroke", "gold");
+        }
+
+        svg.appendChild(path);
+        return svg;
+    }
+
+    function renderStars(rating) {
+        const container = document.getElementById("star-container");
+        container.innerHTML = ''; // Clear any existing stars
+
+        const fullStars = Math.floor(rating);
+        const halfStar = rating % 1 >= 0.5;
+
+        for (let i = 0; i < fullStars; i++) {
+            container.appendChild(createStar());
+        }
+
+        if (halfStar) {
+            container.appendChild(createStar(true, true));
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const rating = parseFloat("<%= movie.vote_average %>");
+        renderStars(rating);
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const rating = parseFloat("<%= movie.vote_average %>");
+        renderStars(rating);
+
+        // Add event listener for the back button
+        const backButton = document.getElementById("back-btn");
+        backButton.addEventListener("click", function() {
+            history.back();
+        });
+    });
+
+    const movieHomepage = "<%= movie.homepage %>";
+            if (movieHomepage) {
+                const learnMoreContainer = document.getElementById("learnMoreContainer");
+                const learnMoreButton = document.createElement("a");
+                learnMoreButton.href = movieHomepage;
+                learnMoreButton.innerHTML = '<button class="learnMore">Learn More</button>';
+                learnMoreContainer.appendChild(learnMoreButton);
+            }
+</script>
+</html>
