@@ -6,7 +6,8 @@ const port = 3000;
 require('dotenv').config();
 
 
-const api_key = "ed760929087b5cc543d905d586d4740c";
+const api_key = process.env.API_KEY;
+console.log(api_key)
 
 // Predefined list of genres with their corresponding IDs from TMDB
 const genres = [
